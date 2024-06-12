@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Monitoring Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            padding: 20px;
+        }
+        #chart-container {
+            width: 80%;
+            margin: 0 auto;
+        }
+        #controls {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        canvas {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div id="controls">
+        <label for="startDate">Start Date:</label>
+        <input type="datetime-local" id="startDate" name="startDate">
+        <label for="endDate">End Date:</label>
+        <input type="datetime-local" id="endDate" name="endDate">
+        <button onclick="fetchData()">Fetch Data</button>
+        <br><br>
+        <label for="wateringThreshold">Automatic Watering Moisture Threshold:</label>
+        <input type="range" id="wateringThreshold" name="wateringThreshold" min="0" max="100" value="60" oninput="updateThresholdValue(this.value)">
+        <span id="thresholdValue">60</span>%
+        <button onclick="updateWateringThreshold()">Set Threshold</button>
+    </div>
+    <div id="chart-container">
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
